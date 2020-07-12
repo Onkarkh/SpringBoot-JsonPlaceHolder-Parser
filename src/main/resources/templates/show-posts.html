@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+
+  <head>
+      <link href = "css/style.css" rel = "stylesheet"/>
+      <title>Spring Boot Application</title>
+   </head>
+   <body>
+      <h4>Posts</h4>
+      <table border="1">
+      
+      	<tr>
+      		<th>UserId</th>
+      		<th>Id</th>
+      		<th>Title</th>
+      		<th>Body</th>
+      	</tr>
+      	
+      	<tr th:each="temp : ${posts}">
+      
+      		<td th:text="${temp.userId}"/>
+      		<td th:text="${temp.id}"/>
+      		<td th:text="${temp.title}"/>
+      		<td th:text="${temp.body}"/>
+      </tr>
+      
+      </table>
+</body>
+
+</html>

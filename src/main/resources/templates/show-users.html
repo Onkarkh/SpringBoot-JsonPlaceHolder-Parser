@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+
+  <head>
+      <link href = "css/style.css" rel = "stylesheet"/>
+      <title>Spring Boot Application</title>
+   </head>
+   <body>
+      <h4>Users</h4>
+      <table border="1">
+      
+      	<tr>
+      		<th>Id</th>
+      		<th>Name</th>
+      		<th>Username</th>
+      		<th>Email</th>
+      		<th>Address</th>
+      		<th>Phone</th>
+      		<th>Website</th>
+      		<th>Company</th>
+      	</tr>
+      	
+      	<tr th:each="temp : ${users}">
+      
+      		<td th:text="${temp.id}"/>
+      		<td th:text="${temp.name}"/>
+      		<td th:text="${temp.username}"/>
+      		<td th:text="${temp.email}"/>
+      		<td th:each="tempAddress : ${temp.address}">
+      			<p th:text="'Street: ' + ${tempAddress.street}"/>
+      			<p th:text="'Suite: ' + ${tempAddress.suite}"/>
+      			<p th:text="'City: ' + ${tempAddress.city}"/>
+      			<p th:text="'Zipcode: ' + ${tempAddress.zipcode}"/>
+      				<p th:each="tempGeo : ${tempAddress.geo}">
+      					<span th:text="'Lat: ' + ${tempGeo.lat}"></span>
+      					<span th:text="'Lng: ' + ${tempGeo.lng}"></span>
+      				</p>
+      		</td>
+      		<td th:text="${temp.phone}"/>
+      		<td th:text="${temp.website}"/>
+      		<td th:each="tempCompany : ${temp.company}">
+      			<p th:text="'Name: ' + ${tempCompany.name}"/>
+      			<p th:text="'catchPhrase: ' + ${tempCompany.catchPhrase}"/>
+      			<p th:text="'bs: ' + ${tempCompany.bs}"/>
+      		</td>
+      		
+      </tr>
+      
+      </table>
+</body>
+
+</html>
