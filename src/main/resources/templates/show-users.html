@@ -37,7 +37,7 @@
       				</p>
       		</td>
       		<td th:text="${temp.phone}"/>
-      		<td th:text="${temp.website}"/>
+      		<td><a th:href="${temp.website}" th:text="${temp.website}"/></td>
       		<td th:each="tempCompany : ${temp.company}">
       			<p th:text="'Name: ' + ${tempCompany.name}"/>
       			<p th:text="'catchPhrase: ' + ${tempCompany.catchPhrase}"/>
