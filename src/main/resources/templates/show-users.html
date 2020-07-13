@@ -18,6 +18,7 @@
       		<th>Phone</th>
       		<th>Website</th>
       		<th>Company</th>
+      		<th>Actions</th>
       	</tr>
       	
       	<tr th:each="temp : ${users}">
@@ -37,12 +38,13 @@
       				</p>
       		</td>
       		<td th:text="${temp.phone}"/>
-      		<td><a th:href="${temp.website}" th:text="${temp.website}"/></td>
+      		<td><a th:href=${temp.website} th:text="${temp.website}"/></td>
       		<td th:each="tempCompany : ${temp.company}">
       			<p th:text="'Name: ' + ${tempCompany.name}"/>
       			<p th:text="'catchPhrase: ' + ${tempCompany.catchPhrase}"/>
       			<p th:text="'bs: ' + ${tempCompany.bs}"/>
       		</td>
+      		<td><a th:href="@{/showPost(userId=${temp.id})}">View Posts</a></td>
       		
       </tr>
       

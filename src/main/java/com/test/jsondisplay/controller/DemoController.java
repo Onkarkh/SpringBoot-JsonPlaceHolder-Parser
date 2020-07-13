@@ -8,6 +8,7 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.test.jsondisplay.model.Photo;
@@ -110,6 +111,32 @@ public class DemoController {
 		model.addAttribute("photos", photos);
 		
 		return "show-photos";
+	}
+	
+	@GetMapping("/showPost")
+	public String showUserPosts(@RequestParam("userId") int userId,
+			Model model) {
+		
+		
+		posts = new ArrayList<Post>();
+
+		objectMapper = new ObjectMapper();
+
+		try {
+			Post[] retrivedPosts = objectMapper.readValue(new URL("http://jsonplaceholder.typicode.com/posts?userId=" + userId),
+					Post[].class);
+
+			for (Post temp : retrivedPosts) {
+				posts.add(temp);
+			}
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		model.addAttribute("posts", posts);
+		
+		return "show-posts";
 	}
 	
 }
