@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+
+  <head>
+      <link href = "css/style.css" rel = "stylesheet"/>
+      <title>Spring Boot Application</title>
+   </head>
+   <body>
+      <h4>Posts</h4>
+      <table border="1">
+      
+      	<tr>
+      		<th>AlbumId</th>
+      		<th>Id</th>
+      		<th>Title</th>
+      		<th>Url</th>
+      		<th>ThumbnailUrl</th>
+      	</tr>
+      	
+      	<tr th:each="temp : ${photos}">
+      
+      		<td th:text="${temp.albumId}"/>
+      		<td th:text="${temp.id}"/>
+      		<td th:text="${temp.title}"/>
+      		<td><img th:src="${temp.url}" height="10" width="10"/></td>
+      		<td><img th:src="${temp.thumbnailUrl}" height="10" width="10"/></td>
+      </tr>
+      
+      </table>
+</body>
+
+</html>

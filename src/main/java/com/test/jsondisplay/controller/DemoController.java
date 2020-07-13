@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.test.jsondisplay.model.Photo;
 import com.test.jsondisplay.model.Post;
 import com.test.jsondisplay.model.User;
 
@@ -19,6 +20,8 @@ public class DemoController {
 	private List<Post> posts;
 	
 	private List<User> users;
+	
+	private List<Photo> photos;
 	
 	private ObjectMapper objectMapper;
 	
@@ -60,6 +63,25 @@ public class DemoController {
 		}
 	}
 	
+	private void getPhotos() {
+		
+		photos = new ArrayList<Photo>();
+
+		objectMapper = new ObjectMapper();
+
+		try {
+			Photo[] retrivedPhotos = objectMapper.readValue(new URL("http://jsonplaceholder.typicode.com/photos"),
+					Photo[].class);
+
+			for (Photo temp : retrivedPhotos) {
+				photos.add(temp);
+			}
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	@GetMapping("/users")
 	public String showUsers(Model model) {
 		
@@ -70,7 +92,7 @@ public class DemoController {
 		return "show-users";
 	}
 	
-	@GetMapping("/all-posts")
+	@GetMapping("/posts")
 	public String showPosts(Model model) {
 		
 		getPosts();
@@ -78,6 +100,16 @@ public class DemoController {
 		model.addAttribute("posts", posts);
 		
 		return "show-posts";
+	}
+	
+	@GetMapping("/photos")
+	public String showPhots(Model model) {
+		
+		getPhotos();
+		
+		model.addAttribute("photos", photos);
+		
+		return "show-photos";
 	}
 	
 }

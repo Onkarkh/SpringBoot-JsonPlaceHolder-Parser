@@ -32,7 +32,7 @@
       			<p th:text="'City: ' + ${tempAddress.city}"/>
       			<p th:text="'Zipcode: ' + ${tempAddress.zipcode}"/>
       				<p th:each="tempGeo : ${tempAddress.geo}">
-      					<span th:text="'Lat: ' + ${tempGeo.lat}"></span>
+      					<span th:text="'Lat: ' + ${tempGeo.lat}"></span><br>
       					<span th:text="'Lng: ' + ${tempGeo.lng}"></span>
       				</p>
       		</td>
